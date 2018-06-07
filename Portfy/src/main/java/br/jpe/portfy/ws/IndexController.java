@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author joaovperin
  */
 @Controller
-public class SampleController {
+public class IndexController {
 
-    @GetMapping("test")
+    @GetMapping("")
     public ResponseEntity<String> hello() {
         return new ResponseEntity<>("I'm a bearpot.", HttpStatus.I_AM_A_TEAPOT);
     }

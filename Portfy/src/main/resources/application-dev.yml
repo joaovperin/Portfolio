@@ -1,0 +1,12 @@
+spring:
+    profiles:
+        active: dev
+    devtools:
+        restart:
+            enabled: true
+        livereload:
+            enabled: false
+    datasource:
+        url: jdbc:mysql://porto-zoca.cl6eed1myiqo.us-west-2.rds.amazonaws.com:3306/Portfy_Dev
+        username: PortfyDev
+        password: PortfyDev1234
