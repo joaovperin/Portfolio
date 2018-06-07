@@ -3,7 +3,7 @@ PORTFOLIO.
 This application is planned to be a live web page that will help every programmer to show their personal projects, so it will act like a Programmer's Portfolio.
 And, for sure, it would also be mine.
 
-So let's go to the requisites:
+So let's go to the requirements:
 
 
 -- FUNCTIONAL --
@@ -59,7 +59,8 @@ Project Management
 #3 Object-Relational Mapping (Spring JPA)
 #4 Easy data-source configuration (via Properties files)
 #5 Internationalization (i18n)
-#6 A place to store static files (pictures and attachments)
+#6 A good view motor that supports easy and understandable code and helps us (Thymeleaf)
+#7 A place to store static files (pictures and attachments)
 
 - Production Ones (that differ from development)
 #1 A robust relational database that runs on disk (like MySQL)
