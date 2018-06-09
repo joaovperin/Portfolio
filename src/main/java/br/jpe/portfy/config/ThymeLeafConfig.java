@@ -5,20 +5,14 @@
  */
 package br.jpe.portfy.config;
 
+import br.jpe.portfy.thymeleaf.TagsDialect;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.Validator;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 import org.thymeleaf.spring5.ISpringTemplateEngine;
 import org.thymeleaf.spring5.SpringTemplateEngine;
@@ -37,16 +31,10 @@ import org.thymeleaf.templateresolver.UrlTemplateResolver;
 @Configuration
 public class ThymeLeafConfig implements ApplicationContextAware {
 
-    /** Internalization (i18n) messages */
-    private static final String MESSAGE_SOURCE = "/WEB-INF/i18n/messages";
     /** Views folder */
     private static final String VIEWS = "WEB-INF/views/";
     /** Views suffix */
     private static final String VIEW_SUFF = ".html";
-    /** Resources location */
-    private static final String RESOURCES_LOCATION = "/resources/";
-    /** Resources handler */
-    private static final String RESOURCES_HANDLER = RESOURCES_LOCATION + "**";
 
     /** Application context */
     private ApplicationContext applicationContext;
@@ -86,6 +74,7 @@ public class ThymeLeafConfig implements ApplicationContextAware {
         engine.addTemplateResolver(new UrlTemplateResolver());
         engine.addTemplateResolver(templateResolver());
         engine.addTemplateResolver(springTemplateResolver());
+        engine.addDialect(new TagsDialect());
         engine.addDialect(new Java8TimeDialect());
         return engine;
     }
@@ -97,40 +86,6 @@ public class ThymeLeafConfig implements ApplicationContextAware {
         resolver.setPrefix("/WEB-INF/pages/");
         resolver.setTemplateMode(TemplateMode.HTML);
         return resolver;
-    }
-
-    /**
-     * A static class to configure MVC
-     */
-    static class WebMvcConfig extends WebMvcConfigurationSupport {
-
-        @Override
-        public RequestMappingHandlerMapping requestMappingHandlerMapping() {
-            RequestMappingHandlerMapping requestMappingHandlerMapping = super.requestMappingHandlerMapping();
-            requestMappingHandlerMapping.setUseSuffixPatternMatch(false);
-            requestMappingHandlerMapping.setUseTrailingSlashMatch(false);
-            return requestMappingHandlerMapping;
-        }
-
-        @Override
-        public void addResourceHandlers(ResourceHandlerRegistry registry) {
-            registry.addResourceHandler(RESOURCES_HANDLER).addResourceLocations(RESOURCES_LOCATION);
-        }
-
-        @Override
-        public Validator getValidator() {
-            LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
-            validator.setValidationMessageSource(messageSource());
-            return validator;
-        }
-
-        private MessageSource messageSource() {
-            ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-            messageSource.setBasename(MESSAGE_SOURCE);
-            messageSource.setCacheSeconds(5);
-            return messageSource;
-        }
-
     }
 
     /**

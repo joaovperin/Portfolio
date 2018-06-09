@@ -29,6 +29,32 @@ and open the template in the editor.
             </div>
             <footer  th:replace="fragments/template :: footer" />
         </center>
+
+        hehehe
+        <tags:panel>
+            this is the content inside a PANEL tag
+            <div style="background-color:blue">hi!</div>
+        </tags:panel>
+        
+        <components:panel>
+            this is the content inside a PANEL tag
+            <div style="background-color:blue">hi!</div>
+        </components:panel>
+
+        <center>
+
+
+            <h2 th:text="'Portfy - ' + ${title} + ' :D'" />
+            <div th:replace="fragments/template :: card-component" th:remove="tag">
+                Test Card ajdkjashdjkashfdfdfd
+                <div th:fragment="card-content"  th:remove="tag"> <!-- Need to wrap the actual content here -->
+                    Test Card ajdkjashdjkash
+                    Test Card ajdkjashdjkash
+                    Test Card ajdkjashdjkash
+                    Test Card ajdkjashdjkash
+                </div>
+            </div>
+        </center>
     </body>
 
 </html>

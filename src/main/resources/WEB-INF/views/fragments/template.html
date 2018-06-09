@@ -68,6 +68,24 @@ and open the template in the editor.
         </center>
         <!--/Dummy Content Fragment -->
 
+        <!--Card Component Fragment -->
+        <div class="card" style="width: 430px;" th:fragment="card-component">
+            <div class="card-body">
+                <h4 class="card-title" th:fragment="card-title">Título</h4>
+                <div th:fragment="card-content">
+                    Card dummy content.
+    <!--                <div>Referência</div>
+                    <input type="text" value="${prod.referencia}" name="referencia" id="Referencia" style="width: 75%;" autofocus="autofocus"/>
+                    <br/>
+                    <div>Descrição</div>
+                    <input type="text" value="${prod.descricao}" name="descricao" id="Descricao"  style="width: 75%;"/>
+                    <br/>
+                    <input name="submit" type="button" value="Ok" onclick="botaoAdd()"/>-->
+                </div>
+            </div>
+        </div>
+        <!--/Card Component Fragment -->
+
         <!--Footer Fragment -->
         <footer style="position: absolute; bottom: 0; width: 100%; background-color: #33ccff; color: white" th:fragment="footer">
             Copyright xD
