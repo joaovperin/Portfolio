@@ -1,6 +1,7 @@
-# Portfolio
+# Portfy
 A programmer Portfolio.
 
-This application is planned to be a live web page that will help every programmer to show their personal projects, so it will act like a Programmer's Portfolio.
-And, for sure, it would also be mine.
+A live running version can be found at http://portfy.herokuapp.com.
 
+This application is planned to be a live web page that will help every programmer to show their personal projects, so it will act like a Programmer's Portfolio.
+And, for sure, it will also be mine.
