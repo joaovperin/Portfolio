@@ -17,6 +17,7 @@ import org.springframework.boot.SpringApplication;
  */
 public final class DefaultProfiles {
 
+    /** Default profile property name */
     private static final String SPRING_PROFILE_DEFAULT = "spring.profiles.default";
 
     private DefaultProfiles() {

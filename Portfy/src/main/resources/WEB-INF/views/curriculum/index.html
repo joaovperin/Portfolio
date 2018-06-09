@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title th:text="'Portfy - ' + ${title}" />
+        <link rel="stylesheet" type="text/css" href="https://unpkg.com/papercss/dist/paper.min.css">
+    </head>
+
+    <body>
+        <center>
+            <h2 th:text="'Portfy - ' + ${title} + ' :D'" />
+            <div>TODO: Add some content here...</div>
+            <div style="margin-top:30px">
+                <a class="paper-btn" th:href="@{/}">Back</a>
+            </div>
+        </center>
+    </body>
+</html>

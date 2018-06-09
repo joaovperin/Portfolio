@@ -6,16 +6,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
 
 /**
  * Main Entry Point
  *
  * @author joaovperin
  */
-@Configuration
 @EnableConfigurationProperties
 @SpringBootApplication
+@Configuration
 public class PortfyWSApplication {
 
     /**
@@ -27,7 +26,7 @@ public class PortfyWSApplication {
     public static void main(String[] args) throws UnknownHostException {
         SpringApplication app = new SpringApplication(PortfyWSApplication.class);
         DefaultProfiles.addDefaultProfile(app);
-        Environment env = app.run(args).getEnvironment();
+        app.run(args);
     }
 
 }
