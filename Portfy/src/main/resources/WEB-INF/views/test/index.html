@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <!--
+/**
+ * ATTENTION!!! THIS VIEW WAS CREATED FOR TESTING PURPOSES ONLY AND IT NEEDS
+ * TO BE DELETED A.S.A.P BEFORE THE RELEASE.
+ *
+ * Thanks! @Joaovperin.
+ */
+-->
+<!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
-    <head>
+    <head th:replace="fragments/template :: headtag">
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title th:text="'Portfy - ' + ${title}" />
@@ -13,10 +21,14 @@ and open the template in the editor.
     </head>
 
     <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top" th:replace="fragments/template :: header"/>
         <center>
             <h2 th:text="'Portfy - ' + ${title} + ' :D'" />
-            <div th:replace="fragments/template :: dummy-content"/>
+            <div th:replace="fragments/template :: dummy-content">
+                <div>THIS WILL NOT BE SHOWN.</div>
+            </div>
             <footer  th:replace="fragments/template :: footer" />
         </center>
     </body>
+
 </html>
