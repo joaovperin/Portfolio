@@ -7,6 +7,6 @@ spring:
         livereload:
             enabled: false
     datasource:
-        url: jdbc:mysql://porto-zoca.cl6eed1myiqo.us-west-2.rds.amazonaws.com:3306/Portfy_Dev
-        username: PortfyDev
-        password: PortfyDev1234
+        url: jdbc:mysql://den1.mysql3.gear.host:3306/portfysample
+        username: portfysample
+        password: Fs6s~2cm9j_3

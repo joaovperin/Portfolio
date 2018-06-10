@@ -30,9 +30,11 @@ and open the template in the editor.
             </div>
 
             <div style="margin-top:40px">
-                <a class="paper-btn" th:href="projects">Projects</a>
-                <a class="paper-btn" th:href="curriculum">Curriculum</a>
-                <a class="paper-btn" th:href="contact">Contact</a>
+                <div th:if="${currentUser}">
+                    <a class="paper-btn" th:href="${currentUser} + @{/projects}">Projects</a>
+                    <a class="paper-btn" th:href="${currentUser} + @{/curriculum}">Curriculum</a>
+                    <a class="paper-btn" th:href="${currentUser} + @{/contact}">Contact</a>
+                </div>
             </div>
 
         </center>
