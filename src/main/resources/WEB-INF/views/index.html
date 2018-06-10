@@ -12,10 +12,10 @@ and open the template in the editor.
 
     <body>
         <center>
+
             <h2 th:text="'Portfy - ' + ${title} + ' :D'" />
 
-            <!--Card Component Fragment -->
-            <div class="card card-container">
+            <div class="card card-container" th:if="${currentUser}">
                 <h4 class="card-title">Your name here</h4>
                 <div class="card-content">
                     <div class="card-photo" alt="Your picture here" title="Your picture">
@@ -29,6 +29,18 @@ and open the template in the editor.
                 </div>
             </div>
 
+            <div class="card card-container" th:unless="${currentUser}">
+                <h4 class="card-title">Search for an user!</h4>
+                <div class="card-content center pd-10">
+                    <form id="query-form">
+                        <label for="username">User</label>
+                        <input type="text" id="username" autofocus="autofocus"/>
+                        <br/>
+                        <input type="submit" value="Ok"/>
+                    </form>
+                </div>
+            </div>
+
             <div style="margin-top:40px">
                 <div th:if="${currentUser}">
                     <a class="paper-btn" th:href="${currentUser} + @{/projects}">Projects</a>
@@ -38,6 +50,24 @@ and open the template in the editor.
             </div>
 
         </center>
+
+        <script>
+            $(function () {
+                $('#query-form').submit(function (e) {
+                    e.preventDefault();
+                    var usr = $('#username').val();
+                    if (usr) {
+                        new Ajax('http://localhost:8080/exists/' + usr).get().then(function (d) {
+                            window.location.href = d;
+                        }, function (e) {
+                            alert(e.responseText);
+                            console.log(e);
+                        });
+                    }
+                });
+            });
+        </script>
+
     </body>
 
 </html>

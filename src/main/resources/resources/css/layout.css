@@ -1,3 +1,11 @@
+/** Center elements */
+.center, .center * {
+    text-align:center;
+    margin-left: auto;
+    margin-right: auto;
+}
+/** Adds a default size-10 padding */
+.pd-10 {padding-top: 10px; padding-bottom: 20px;}
 /** Card Component */
 div.card-container {
     width: 430px;
