@@ -5,11 +5,9 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
-    <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title th:text="'Portfy - ' + ${title}" />
-        <link rel="stylesheet" type="text/css" href="https://unpkg.com/papercss/dist/paper.min.css">
+    
+    <head th:replace="fragments/template :: headtag">
+        <title>Portfy - Projects</title>
     </head>
 
     <body>

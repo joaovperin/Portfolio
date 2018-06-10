@@ -5,13 +5,17 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+
     <!-- Head Tag Fragment -->
     <head th:fragment="headtag">
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title th:text="'Portfy - ' + ${title}" />
-        <link rel="stylesheet" type="text/css" href="https://unpkg.com/papercss/dist/paper.min.css">
+        <link rel="stylesheet" type="text/css" href="third-party/paper.min.css"/>
+        <link rel="stylesheet" type="text/css" href="css/layout.css"/>
+        <script type="text/javascript" src="js/common.js"></script>
     </head> <!--/.Head Tag Fragment -->
+
     <body>
         <!-- Navigation Bar Fragment -->
         <nav class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
@@ -74,13 +78,13 @@ and open the template in the editor.
                 <h4 class="card-title" th:fragment="card-title">Título</h4>
                 <div th:fragment="card-content">
                     Card dummy content.
-    <!--                <div>Referência</div>
-                    <input type="text" value="${prod.referencia}" name="referencia" id="Referencia" style="width: 75%;" autofocus="autofocus"/>
-                    <br/>
-                    <div>Descrição</div>
-                    <input type="text" value="${prod.descricao}" name="descricao" id="Descricao"  style="width: 75%;"/>
-                    <br/>
-                    <input name="submit" type="button" value="Ok" onclick="botaoAdd()"/>-->
+                    <!--                <div>Referência</div>
+                                    <input type="text" value="${prod.referencia}" name="referencia" id="Referencia" style="width: 75%;" autofocus="autofocus"/>
+                                    <br/>
+                                    <div>Descrição</div>
+                                    <input type="text" value="${prod.descricao}" name="descricao" id="Descricao"  style="width: 75%;"/>
+                                    <br/>
+                                    <input name="submit" type="button" value="Ok" onclick="botaoAdd()"/>-->
                 </div>
             </div>
         </div>

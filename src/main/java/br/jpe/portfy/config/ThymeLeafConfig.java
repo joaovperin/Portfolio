@@ -10,8 +10,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ViewResolver;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 import org.thymeleaf.spring5.ISpringTemplateEngine;
@@ -88,15 +86,4 @@ public class ThymeLeafConfig implements ApplicationContextAware {
         return resolver;
     }
 
-    /**
-     * Handles favicon.ico requests and returns that
-     */
-    @Controller
-    static class FaviconController {
-
-        @RequestMapping("favicon.ico")
-        String favicon() {
-            return "forward:/resources/static/favicon.ico";
-        }
-    }
 }

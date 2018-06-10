@@ -24,10 +24,12 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 
     /** Internalization (i18n) messages */
     private static final String MESSAGE_SOURCE = "/WEB-INF/i18n/messages";
+    /** Resources URL Handler */
+    private static final String RESOURCES_HANDLER = "/**";
     /** Resources location */
-    private static final String RESOURCES_LOCATION = "/resources/";
-    /** Resources handler */
-    private static final String RESOURCES_HANDLER = RESOURCES_LOCATION + "**";
+    private static final String[] RESOURCES_LOCATION = {
+        "classpath:/META-INF/resources/", "classpath:/resources/",
+        "classpath:/static/", "classpath:/public/"};
 
     /**
      * Request Handler Mappers

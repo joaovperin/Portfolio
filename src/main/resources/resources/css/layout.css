@@ -1,0 +1,21 @@
+/** Card Component */
+div.card-container {
+    width: 430px;
+}
+h4.card-title {
+    margin-bottom: 30px;
+}
+div.card-content {
+    margin-top: 0;
+}
+div.card-photo {
+    margin-bottom: 25px;
+}
+div.card-text {
+    margin: 45px 35px 25px 35px;
+    text-align: justify;
+}
+div.card-text p {
+    text-indent: 23px;
+}
+/**./Card Component*/

@@ -5,22 +5,36 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
-    <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title th:text="'Portfy - ' + ${title}" />
-        <link rel="stylesheet" type="text/css" href="https://unpkg.com/papercss/dist/paper.min.css">
+
+    <head th:replace="fragments/template :: headtag">
+        <title>Portfy - Index</title>
     </head>
 
     <body>
         <center>
             <h2 th:text="'Portfy - ' + ${title} + ' :D'" />
-            <div>TODO: Add some content here...</div>
-            <div style="margin-top:30px">
+
+            <!--Card Component Fragment -->
+            <div class="card card-container">
+                <h4 class="card-title">Your name here</h4>
+                <div class="card-content">
+                    <div class="card-photo" alt="Your picture here" title="Your picture">
+                        <img src="img/dog.jpg"/>
+                    </div>
+                    <div class="card-text">
+                        <p>
+                            Lorem ipsum per diam accumsan risus torquent pretium ullamcorper accumsan, lorem nibh feugiat per ut nisi vulputate luctus pulvinar, primis feugiat aliquam faucibus lacus curae eros nibh. praesent morbi mollis nam, sociosqu.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top:40px">
                 <a class="paper-btn" th:href="projects">Projects</a>
                 <a class="paper-btn" th:href="curriculum">Curriculum</a>
                 <a class="paper-btn" th:href="contact">Contact</a>
             </div>
+
         </center>
     </body>
 
