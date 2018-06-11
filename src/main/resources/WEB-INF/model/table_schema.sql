@@ -3,11 +3,11 @@
  */
 CREATE TABLE IF NOT EXISTS User (
    Id INT NOT NULL AUTO_INCREMENT COMMENT 'User ID',
-   User Varchar(24) NOT NULL COMMENT 'Username',
-   Pass Varchar(24) NOT NULL COMMENT 'Password',
+   Username Varchar(24) NOT NULL COMMENT 'Username',
+   Password Varchar(24) NOT NULL COMMENT 'Password',
    Email Varchar(80) NOT NULL COMMENT 'Email',
-   First_Name Varchar(24) NOT NULL COMMENT 'First Name',
-   Last_Name Varchar(60) NOT NULL COMMENT 'Last Name',
+   Firstname Varchar(24) NOT NULL COMMENT 'First Name',
+   Lastname Varchar(60) NOT NULL COMMENT 'Last Name',
    Primary Key (Id)
 );
 

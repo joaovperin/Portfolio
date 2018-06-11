@@ -5,10 +5,11 @@
  */
 package br.jpe.portfy.ws;
 
-import br.jpe.portfy.exception.PortfyException;
-import java.util.Arrays;
+import br.jpe.portfy.exception.UserNotFoundException;
+import br.jpe.portfy.ws.user.UserService;
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/")
 public class IndexController {
+
+    @Autowired
+    private UserService users;
 
     /**
      * Mapping to the index URL
@@ -48,15 +52,15 @@ public class IndexController {
     @GetMapping("exists/{user}")
     public ResponseEntity<String> checkUserExists(@PathVariable String user) {
         // If user is not provided
-        if (user == null || user.trim().isEmpty()) {
-            return new ResponseEntity<>("User not provided.", HttpStatus.NOT_FOUND);
+        if (users.isUsernameValid(user)) {
+            return new ResponseEntity<>("Username not provided.", HttpStatus.NOT_FOUND);
         }
         // User exists
-        if (true) {
+        if (users.exists(user)) {
             return new ResponseEntity<>(user, HttpStatus.OK);
         }
         // User not found
-        return new ResponseEntity<>(String.format("User '%s' doesn't exists.", user), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(notFoundMsg(user), HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -64,19 +68,28 @@ public class IndexController {
      *
      * @param user
      * @return ModelAndView
-     * @throws br.jpe.portfy.exception.PortfyException
      */
     @GetMapping("{user}")
-    public ModelAndView userIndex(@PathVariable String user) throws PortfyException {
-        // TODO: Valid if the user exists and remove this .
-        if (Arrays.asList("contact", "curriculum", "projects").contains(user)) {
-            throw new PortfyException("Invalid URL!");
+    public Object userIndex(@PathVariable String user) {
+        // If user doesn't exists
+        if (!users.exists(user)) {
+            throw new UserNotFoundException(notFoundMsg(user));
         }
         Map map = new HashMap<>();
         map.put("title", "Index - " + user);
         map.put("header", " - INDEX -");
         map.put("currentUser", user);
         return new ModelAndView("index", map);
+    }
+
+    /**
+     * "User not found" default return value
+     *
+     * @param user
+     * @return ResponseEntity
+     */
+    private static String notFoundMsg(String user) {
+        return String.format("The user '%s' doesn't exists.", user);
     }
 
 }

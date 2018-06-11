@@ -27,7 +27,7 @@ var Ajax = function (url, customParam) {
     function send() {
         var q = $.Deferred();
         $.ajax({
-            url: url,
+            url: encodeURI(url),
             method: param.method,
             data: param.data,
             success: (response) => q.resolve(response),

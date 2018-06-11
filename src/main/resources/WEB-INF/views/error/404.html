@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+
+    <head th:replace="fragments/template :: headtag">
+        <title>Portfy - Error Page :/</title>
+    </head>
+
+    <body>
+        <center>
+            <h2>Portfy - Ops! An error occurred... :(  </h2>
+            <div>
+                <div class="pd-10">
+                    <h3>Error: </h3>
+                    <p th:text="${error}" style="padding-bottom:20px"></p>
+                    <a class="paper-btn" th:href="@{/}">Back to index</a>
+                </div>
+            </div>
+            <footer  th:replace="fragments/template :: footer" />
+        </center>
+    </body>
+</html>
