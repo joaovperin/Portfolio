@@ -5,11 +5,14 @@
  */
 package br.jpe.portfy.ws.user;
 
+import br.jpe.portfy.ws.picture.Picture;
 import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 import org.hibernate.annotations.NaturalId;
 
@@ -51,6 +54,13 @@ public class User implements Serializable {
     @Column(nullable = false, length = 2)
     private String lastname;
 
+    /** Description */
+    @Column(nullable = false, length = 30)
+    private String description;
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
+    private Picture picture;
+
     /**
      * Default constructor
      */
@@ -62,49 +72,65 @@ public class User implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getUsername() {
         return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    // Setters
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getFirstname() {
         return firstname;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
     public String getLastname() {
         return lastname;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public Picture getPicture() {
+        return picture;
+    }
+
+    // Setters
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPicture(Picture picture) {
+        this.picture = picture;
     }
 
 }

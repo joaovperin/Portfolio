@@ -5,8 +5,9 @@
  */
 package br.jpe.portfy.ws.projects;
 
-import java.util.HashMap;
+import br.jpe.portfy.ws.utils.ParamsService;
 import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,12 +22,12 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("{user}/projects")
 public class ProjectsController {
 
+    @Autowired
+    private ParamsService params;
+
     @GetMapping
     public ModelAndView index(@PathVariable String user) {
-        Map map = new HashMap<>();
-        map.put("title", "Projects - " + user);
-        map.put("header", " - Projects -");
-        map.put("currentUser", user);
+        Map map = params.map(user);
         return new ModelAndView("projects/index.html", map);
     }
 

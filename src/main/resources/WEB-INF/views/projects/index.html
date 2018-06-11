@@ -12,7 +12,10 @@ and open the template in the editor.
 
     <body>
         <center>
-            <h2 th:text="'Portfy - ' + ${title} + ' :D'" />
+            
+            <h2 th:text="'Portfy - ' + ${usr.username} + ' :D'" th:if="${usr}" />
+            <h2 th:text="'Portfy - Projects :D'" th:unless="${usr}"/>
+            
             <div th:replace="fragments/template :: dummy-content"/>
             <footer  th:replace="fragments/template :: footer" />
         </center>

@@ -10,20 +10,22 @@ and open the template in the editor.
         <title>Portfy - Index</title>
     </head>
 
-    <body>
+    <body th:object="${usr}">
         <center>
 
-            <h2 th:text="'Portfy - ' + ${title} + ' :D'" />
+            <h2 th:text="'Portfy - ' + ${usr.username} + ' :D'" th:if="${currentUser}" />
+            <h2 th:text="'Portfy - Index :D'" th:unless="${usr}"/>
 
             <div class="card card-container" th:if="${currentUser}">
-                <h4 class="card-title">Your name here</h4>
+                <h4 class="card-title">[[${usr.firstname}]] [[${usr.lastname}]]</h4>
                 <div class="card-content">
-                    <div class="card-photo" alt="Your picture here" title="Your picture">
-                        <img src="img/dog.jpg"/>
+
+                    <div class="card-photo" th:attr="title=${usr.picture.title}">
+                        <img th:attr="src='img/' + ${usr.picture.filename}, alt=${usr.picture.alt}" />
                     </div>
                     <div class="card-text">
-                        <p>
-                            Lorem ipsum per diam accumsan risus torquent pretium ullamcorper accumsan, lorem nibh feugiat per ut nisi vulputate luctus pulvinar, primis feugiat aliquam faucibus lacus curae eros nibh. praesent morbi mollis nam, sociosqu.
+                        <p th:text="${usr.description}">
+                            Here we'll show the user description. Nam quis nulla. Integer malesuada. In in enim a arcu imperdiet malesuada. Sed vel lectus. Donec odio urna, tempus molestie, porttitor ut, iaculis quis, sem. Phasellus rhoncus. Aenean id metus id velit ullamcorper pulvinar. Vestibulum fermentum tortor id mi. Pellentesque ipsum
                         </p>
                     </div>
                 </div>
@@ -46,6 +48,9 @@ and open the template in the editor.
                     <a class="paper-btn" th:href="${currentUser} + @{/projects}">Projects</a>
                     <a class="paper-btn" th:href="${currentUser} + @{/curriculum}">Curriculum</a>
                     <a class="paper-btn" th:href="${currentUser} + @{/contact}">Contact</a>
+                    <div style="padding-bottom:30px; padding-top: 70px; margin-bottom:30px">
+                        <a class="paper-btn" th:href="@{/}">Back to index</a>
+                    </div>
                 </div>
             </div>
 
@@ -63,6 +68,8 @@ and open the template in the editor.
                             alert(e.responseText);
                             console.log(e);
                         });
+                    } else {
+                        alert("Please, provide an username to search");
                     }
                 });
             });

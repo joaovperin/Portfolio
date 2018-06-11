@@ -10,7 +10,10 @@ and open the template in the editor.
     <head th:fragment="headtag">
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title th:text="'Portfy - ' + ${title}" />
+
+        <title th:text="'Portfy - ' + ${usr.username}" th:if="${usr}" />
+        <title th:text="'Portfy'" th:unless="${usr}" />
+
         <link rel="stylesheet" type="text/css" href="/third-party/paper.min.css"/>
         <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
         <script type="text/javascript" src="/third-party/jquery.min.js"></script>

@@ -7,6 +7,7 @@ package br.jpe.portfy.ws;
 
 import br.jpe.portfy.exception.UserNotFoundException;
 import br.jpe.portfy.ws.user.UserService;
+import br.jpe.portfy.ws.utils.ParamsService;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,8 @@ public class IndexController {
 
     @Autowired
     private UserService users;
+    @Autowired
+    private ParamsService params;
 
     /**
      * Mapping to the index URL
@@ -38,8 +41,6 @@ public class IndexController {
     @GetMapping
     public ModelAndView index() {
         Map map = new HashMap<>();
-        map.put("title", "Index");
-        map.put("header", " - INDEX -");
         return new ModelAndView("index", map);
     }
 
@@ -75,10 +76,7 @@ public class IndexController {
         if (!users.exists(user)) {
             throw new UserNotFoundException(notFoundMsg(user));
         }
-        Map map = new HashMap<>();
-        map.put("title", "Index - " + user);
-        map.put("header", " - INDEX -");
-        map.put("currentUser", user);
+        Map map = params.map(user);
         return new ModelAndView("index", map);
     }
 

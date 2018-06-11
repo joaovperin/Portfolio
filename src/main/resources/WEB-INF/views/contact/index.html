@@ -5,14 +5,17 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
-    
+
     <head th:replace="fragments/template :: headtag">
         <title>Portfy - Contact</title>
     </head>
 
     <body>
         <center>
-            <h2 th:text="'Portfy - ' + ${title} + ' :D'" />
+
+            <h2 th:text="'Portfy - ' + ${usr.username} + ' :D'" th:if="${usr}" />
+            <h2 th:text="'Portfy - Contact :D'" th:unless="${usr}"/>
+
             <div th:replace="fragments/template :: dummy-content"/>
             <footer  th:replace="fragments/template :: footer" />
         </center>
