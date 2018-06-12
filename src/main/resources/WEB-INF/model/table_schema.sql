@@ -24,7 +24,21 @@ CREATE TABLE IF NOT EXISTS Picture (
    Primary Key (Id)
 );
 
-INSERT INTO User (User, Pass, Email, First_Name, Last_Name, Description) 
+/**
+ * Contact table
+ */
+CREATE TABLE IF NOT EXISTS Contact (
+   User_Id INT NOT NULL COMMENT 'User ID',
+   Cellphone Varchar(10) NULL,
+   Country_Code Varchar(3) NULL,
+   State_Code Varchar(3) NULL,
+   State Varchar(40) NULL,
+   City Varchar(60) NULL,
+   Address Varchar(120) NULL,
+   Primary Key (User_Id)
+);
+
+INSERT INTO User (User, Pass, Email, First_Name, Last_Name, Description)
 VALUES
 ('joaovperin', 'joaovperin', 'joao@email.com', 'João', 'Perin', 'Lorem ipsum per diam accumsan risus torquent pretium ullamcorper accumsan, lorem nibh feugiat per ut nisi vulputate luctus pulvinar, primis feugiat aliquam faucibus lacus curae eros nibh. praesent morbi mollis nam, sociosqu.'),
 ('mathpmelo', 'mathpmelo', 'math@email.com', 'Matheus', 'Melo', 'Nam quis nulla. Integer malesuada. In in enim a arcu imperdiet malesuada. Sed vel lectus. Donec odio urna, tempus molestie, porttitor ut, iaculis quis, sem. Phasellus rhoncus. Aenean id metus id velit ullamcorper pulvinar. Vestibulum fermentum tortor id mi. Pellentesque ipsum');
@@ -33,3 +47,8 @@ INSERT INTO Picture (User_Id, Filename, Title, Alt)
 VALUES
 ('1', 'cat.jpeg', 'Cat Image', '--cat--img-xD-'),
 ('2', 'dog.jpg', null, null);
+
+INSERT INTO Contact (User_Id, State, City)
+VALUES
+('1', 'RS', 'Novo Hamburgo'),
+('2', 'RS', 'Estância Velha');
