@@ -25,24 +25,15 @@ public class Contact implements Serializable {
     /** Serial version UID */
     private static final long serialVersionUID = 1L;
 
-    /**
-     * User_Id INT NOT NULL COMMENT 'User ID',
-     * Cellphone Varchar(10) NULL,
-     * Country_Code Varchar(3) NULL,
-     * State_Code Varchar(3) NULL,
-     * State Varchar(40) NULL,
-     * City Varchar(60) NULL,
-     * Address Varchar(120) NULL,
-     */
-    /** Auto generated ID */
+    /** Contact ID (will be the user ID) */
     @Id
-    @Column
+    @Column(name = "User_Id", nullable = false)
     private Long id;
 
     /** User associated with the contact data */
     @OneToOne
     @JoinColumn(name = "User_Id", nullable = false)
-    private User userDB;
+    private User user;
 
     @Column(name = "Cellphone")
     private String cellphone;
@@ -63,9 +54,17 @@ public class Contact implements Serializable {
     protected Contact() {
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     // Getters
-    public User getUserDB() {
-        return userDB;
+    public User getUser() {
+        return user;
     }
 
     public String getCellphone() {
@@ -93,8 +92,8 @@ public class Contact implements Serializable {
     }
 
     // Setters
-    public void setUserDB(User userDB) {
-        this.userDB = userDB;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setCellphone(String cellphone) {

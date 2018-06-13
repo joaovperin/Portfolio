@@ -5,6 +5,7 @@
  */
 package br.jpe.portfy.ws.user;
 
+import br.jpe.portfy.ws.contact.Contact;
 import br.jpe.portfy.ws.picture.Picture;
 import java.io.Serializable;
 
@@ -61,6 +62,9 @@ public class User implements Serializable {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
     private Picture picture;
 
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
+    private Contact contact;
+
     /**
      * Default constructor
      */
@@ -100,6 +104,10 @@ public class User implements Serializable {
         return picture;
     }
 
+    public Contact getContact() {
+        return contact;
+    }
+
     // Setters
     public void setId(Long id) {
         this.id = id;
@@ -131,6 +139,10 @@ public class User implements Serializable {
 
     public void setPicture(Picture picture) {
         this.picture = picture;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
 }

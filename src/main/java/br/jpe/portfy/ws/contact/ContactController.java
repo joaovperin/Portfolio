@@ -5,7 +5,6 @@
  */
 package br.jpe.portfy.ws.contact;
 
-import br.jpe.portfy.ws.user.User;
 import br.jpe.portfy.ws.utils.ParamsService;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,18 +24,10 @@ public class ContactController {
 
     @Autowired
     private ParamsService params;
-    @Autowired
-    private ContactRepository dao;
 
     @GetMapping
     public ModelAndView index(@PathVariable String user) {
         Map map = params.map(user);
-
-        User get = (User) map.get("usr");
-        Contact cts = dao.findByUser(get.getId());
-        map.put("xxx", cts);
-
-
         return new ModelAndView("contact/index.html", map);
     }
 

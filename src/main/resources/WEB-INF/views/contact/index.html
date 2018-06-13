@@ -16,7 +16,21 @@ and open the template in the editor.
             <h2 th:text="'Portfy - ' + ${usr.username} + ' :D'" th:if="${usr}" />
             <h2 th:text="'Portfy - Contact :D'" th:unless="${usr}"/>
 
-            <div th:replace="fragments/template :: dummy-content"/>
+            <p th:text="'Email: ' +  ${usr.email}">
+                Email: user@email.com
+            </p>
+            <p th:text="'Phone: +' +  ${usr.contact.countryCode} + ' (' + ${usr.contact.stateCode} + ') ' + ${usr.contact.cellphone}">
+                Phone: +55 (51) 993388532
+            </p>
+            <p th:text="'Address: ' + ${usr.contact.address}">
+                Address: Rua tal, número 26
+            </p>
+            <p th:text="${usr.contact.city} + ' - ' + ${usr.contact.state}">
+                Novo Hamburgo - RS
+            </p>
+            <div th:replace="fragments/template :: back-user-home">
+                <a class="paper-btn" th:href="'/' + ${currentUser}">Back</a>
+            </div>
             <footer  th:replace="fragments/template :: footer" />
         </center>
     </body>
