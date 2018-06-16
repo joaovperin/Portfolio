@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author joaovperin
  */
 @RestController
-@RequestMapping("{user}/curriculum")
+@RequestMapping("/user/{user}/curriculum")
 public class CurriculumController {
 
     @Autowired

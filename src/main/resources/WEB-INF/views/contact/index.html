@@ -29,7 +29,7 @@ and open the template in the editor.
                 Novo Hamburgo - RS
             </p>
             <div th:replace="fragments/template :: back-user-home">
-                <a class="paper-btn" th:href="'/' + ${currentUser}">Back</a>
+                <a class="paper-btn" th:href="'/user/' + ${currentUser}">Back</a>
             </div>
             <footer  th:replace="fragments/template :: footer" />
         </center>

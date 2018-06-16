@@ -21,7 +21,7 @@ and open the template in the editor.
                 <div class="card-content">
 
                     <div class="card-photo" th:attr="title=${usr.picture.title}">
-                        <img th:attr="src='img/' + ${usr.picture.filename}, alt=${usr.picture.alt}" />
+                        <img th:attr="src='/img/' + ${usr.picture.filename}, alt=${usr.picture.alt}" />
                     </div>
                     <div class="card-text">
                         <p th:text="${usr.description}">
@@ -45,9 +45,9 @@ and open the template in the editor.
 
             <div style="margin-top:40px">
                 <div th:if="${currentUser}">
-                    <a class="paper-btn" th:href="${currentUser} + @{/projects}">Projects</a>
-                    <a class="paper-btn" th:href="${currentUser} + @{/curriculum}">Curriculum</a>
-                    <a class="paper-btn" th:href="${currentUser} + @{/contact}">Contact</a>
+                    <a class="paper-btn" th:href="'/user/' + ${currentUser} + @{/projects}">Projects</a>
+                    <a class="paper-btn" th:href="'/user/' + ${currentUser} + @{/curriculum}">Curriculum</a>
+                    <a class="paper-btn" th:href="'/user/' + ${currentUser} + @{/contact}">Contact</a>
                     <div style="padding-bottom:30px; padding-top: 70px; margin-bottom:30px">
                         <a class="paper-btn" th:href="@{/}">Back to index</a>
                     </div>

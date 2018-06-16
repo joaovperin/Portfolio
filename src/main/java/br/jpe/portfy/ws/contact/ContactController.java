@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author joaovperin
  */
 @RestController
-@RequestMapping("{user}/contact")
+@RequestMapping("/user/{user}/contact")
 public class ContactController {
 
     @Autowired

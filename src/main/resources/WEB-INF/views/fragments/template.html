@@ -72,7 +72,7 @@ and open the template in the editor.
             <div th:fragment="dummy-content">
                 <div>TODO: Add some content here...</div>
                 <div style="margin-top:30px" th:fragment="back-user-home">
-                    <a class="paper-btn" th:href="'/' + ${currentUser}">Back</a>
+                    <a class="paper-btn" th:href="'/user/' + ${currentUser}">Back</a>
                 </div>
             </div>
         </center>

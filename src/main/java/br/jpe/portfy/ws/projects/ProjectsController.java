@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author joaovperin
  */
 @RestController
-@RequestMapping("{user}/projects")
+@RequestMapping("/user/{user}/projects")
 public class ProjectsController {
 
     @Autowired

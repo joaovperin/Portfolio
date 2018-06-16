@@ -58,7 +58,7 @@ public class IndexController {
         }
         // User exists
         if (users.exists(user)) {
-            return new ResponseEntity<>(user, HttpStatus.OK);
+            return new ResponseEntity<>("user/" + user, HttpStatus.OK);
         }
         // User not found
         return new ResponseEntity<>(userNotFoundMsg(user), HttpStatus.NOT_FOUND);
@@ -70,8 +70,8 @@ public class IndexController {
      * @param user
      * @return ModelAndView
      */
-    @GetMapping("{user}")
-    public Object userIndex(@PathVariable String user) {
+    @GetMapping("/user/{user}")
+    public ModelAndView userIndex(@PathVariable String user) {
         // If user doesn't exist
         if (!users.exists(user)) {
             throw new UserNotFoundException(userNotFoundMsg(user));
