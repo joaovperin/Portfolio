@@ -11,12 +11,18 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 /**
- * Repository of Contact table
+ * Repository for the Contact entity
  *
  * @author joaovperin
  */
 public interface ContactRepository extends JpaRepository<Contact, Long>, JpaSpecificationExecutor<Contact> {
 
+    /**
+     * Queries contact information by the userId
+     *
+     * @param userId
+     * @return Contact
+     */
     @Query(nativeQuery = true, value = "SELECT * FROM Contact WHERE User_Id = :userid LIMIT 1")
     public Contact findByUser(@Param("userid") Long userId);
 

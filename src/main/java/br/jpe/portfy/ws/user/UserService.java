@@ -39,6 +39,12 @@ public class UserService {
         return dao.findByName(user) != null;
     }
 
+    /**
+     * Gets an User by it's name
+     *
+     * @param user
+     * @return User
+     */
     public User get(String user) {
         return dao.findByName(user);
     }

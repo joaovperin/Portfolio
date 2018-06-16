@@ -5,6 +5,7 @@
  */
 package br.jpe.portfy.config;
 
+import br.jpe.portfy.exception.NotInstantiableException;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.boot.SpringApplication;
@@ -19,9 +20,14 @@ public final class DefaultProfiles {
 
     /** Default profile property name */
     private static final String SPRING_PROFILE_DEFAULT = "spring.profiles.default";
+    /** Developer profile name */
+    private static final String DEV_PROFILE_NAME = "dev";
 
+    /**
+     * Private Constructor
+     */
     private DefaultProfiles() {
-        throw new IllegalStateException("Cannot instantiate that!");
+        throw new NotInstantiableException();
     }
 
     /**
@@ -36,7 +42,7 @@ public final class DefaultProfiles {
         * This cannot be set in the <code>application.yml</code> file.
         * See https://github.com/spring-projects/spring-boot/issues/1219
          */
-        defProperties.put(SPRING_PROFILE_DEFAULT, "dev");
+        defProperties.put(SPRING_PROFILE_DEFAULT, DEV_PROFILE_NAME);
         app.setDefaultProperties(defProperties);
     }
 

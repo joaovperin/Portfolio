@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
+ * A controller for a /test page. It's used only for DEVELOPMENT TESTS. ...to be
+ * removed before oficial release.
  *
  * @author joaovperin
  */

@@ -9,14 +9,14 @@ import br.jpe.portfy.ws.user.UserService;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * Params utilities
  *
  * @author joaovperin
  */
-@Component
+@Service
 public class ParamsService {
 
     /** User parameter name */
@@ -27,6 +27,12 @@ public class ParamsService {
     @Autowired
     private UserService users;
 
+    /**
+     * Creates and return a Map with default attributes for the user
+     *
+     * @param user
+     * @return Map
+     */
     public final Map<String, Object> map(String user) {
         Map map = new HashMap<>();
         map.put(CURRENT_USER_PARAM, user);

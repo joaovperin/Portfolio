@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Index Page Controller
+ * Controller for the Index page
  *
  * @author joaovperin
  */
@@ -40,8 +40,8 @@ public class IndexController {
      */
     @GetMapping
     public ModelAndView index() {
-        Map map = new HashMap<>();
-        return new ModelAndView("index", map);
+        Map model = new HashMap<>();
+        return new ModelAndView("index", model);
     }
 
     /**
@@ -61,7 +61,7 @@ public class IndexController {
             return new ResponseEntity<>(user, HttpStatus.OK);
         }
         // User not found
-        return new ResponseEntity<>(notFoundMsg(user), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(userNotFoundMsg(user), HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -72,22 +72,22 @@ public class IndexController {
      */
     @GetMapping("{user}")
     public Object userIndex(@PathVariable String user) {
-        // If user doesn't exists
+        // If user doesn't exist
         if (!users.exists(user)) {
-            throw new UserNotFoundException(notFoundMsg(user));
+            throw new UserNotFoundException(userNotFoundMsg(user));
         }
         Map map = params.map(user);
         return new ModelAndView("index", map);
     }
 
     /**
-     * "User not found" default return value
+     * Returns a default "User not found" message
      *
      * @param user
      * @return ResponseEntity
      */
-    private static String notFoundMsg(String user) {
-        return String.format("The user '%s' doesn't exists.", user);
+    private static String userNotFoundMsg(String user) {
+        return String.format("The user '%s' doesn't exist.", user);
     }
 
 }

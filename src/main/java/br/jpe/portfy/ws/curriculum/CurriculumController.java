@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
+ * Controller for the curriculum page
  *
  * @author joaovperin
  */
@@ -25,6 +26,12 @@ public class CurriculumController {
     @Autowired
     private ParamsService params;
 
+    /**
+     * URL Mapping for the view page
+     *
+     * @param user
+     * @return ModelAndView
+     */
     @GetMapping
     public ModelAndView index(@PathVariable String user) {
         Map map = params.map(user);

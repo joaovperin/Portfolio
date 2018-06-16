@@ -17,6 +17,12 @@ import org.springframework.data.repository.query.Param;
  */
 public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User> {
 
+    /**
+     * Finds a User by it's name
+     *
+     * @param name
+     * @return User
+     */
     @Query(nativeQuery = true, value = "SELECT * FROM User WHERE Username = :name LIMIT 1")
     public User findByName(@Param("name") String name);
 
