@@ -10,12 +10,18 @@ import br.jpe.portfy.ws.picture.PictureService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.support.ServletContextResource;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -49,6 +55,19 @@ public class TestController {
     public ResponseEntity one() {
         Picture one = pic.getPictureFrom("joaovperin");
         return new ResponseEntity(one, HttpStatus.OK);
+    }
+
+    //http://www.baeldung.com/spring-mvc-image-media-data
+    //https://stackoverflow.com/questions/20673230/spring-boot-overriding-favicon
+    @Autowired
+    private ServletContext servletContext;
+
+    @RequestMapping(value = "/image-resource", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<Resource> getImageAsResource() {
+        HttpHeaders headers = new HttpHeaders();
+        Resource resource = new ServletContextResource(servletContext, "/WEB-INF/images/image-example.jpg");
+        return new ResponseEntity<>(resource, headers, HttpStatus.OK);
     }
 
 }

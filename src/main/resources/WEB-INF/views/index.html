@@ -62,7 +62,7 @@ and open the template in the editor.
                     e.preventDefault();
                     var usr = $('#username').val();
                     if (usr) {
-                        new Ajax('exists/' + usr).get().then(function (d) {
+                        new Ajax('user/exists/' + usr).get().then(function (d) {
                             window.location.href = d;
                         }, function (e) {
                             alert(e.responseText);
