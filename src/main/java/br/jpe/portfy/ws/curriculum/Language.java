@@ -83,4 +83,8 @@ public class Language implements Serializable {
         this.level = level;
     }
 
+    public String fmtLevel() {
+        return LanguageFormatter.fmtLanguageLevel(getLevel());
+    }
+
 }

@@ -55,7 +55,7 @@ public class Experience implements Serializable {
 
     @OneToMany(mappedBy = "experience")
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<ExperienceActivity> experiences;
+    private List<ExperienceActivity> activities;
 
     @Column(name = "Initial_Date")
     @Temporal(TemporalType.DATE)
@@ -111,12 +111,12 @@ public class Experience implements Serializable {
         this.jobRole = jobRole;
     }
 
-    public List<ExperienceActivity> getExperiences() {
-        return experiences;
+    public List<ExperienceActivity> getActivities() {
+        return activities;
     }
 
-    public void setExperiences(List<ExperienceActivity> experiences) {
-        this.experiences = experiences;
+    public void setActivities(List<ExperienceActivity> activities) {
+        this.activities = activities;
     }
 
     public Date getInitialDate() {

@@ -25,6 +25,8 @@ public class CurriculumController {
 
     @Autowired
     private ParamsService params;
+    @Autowired
+    private CurriculumService curriculums;
 
     /**
      * URL Mapping for the view page
@@ -35,6 +37,8 @@ public class CurriculumController {
     @GetMapping
     public ModelAndView index(@PathVariable String user) {
         Map map = params.map(user);
+        map.put("cv", curriculums.get(user));
         return new ModelAndView("curriculum/index.html", map);
     }
+
 }

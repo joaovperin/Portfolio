@@ -6,7 +6,6 @@
 package br.jpe.portfy.ws.curriculum;
 
 import br.jpe.portfy.ws.user.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -42,7 +41,6 @@ public class Curriculum implements Serializable {
     /** User associated with the curriculum */
     @OneToOne
     @JoinColumn(name = "User_Id", nullable = false)
-    @JsonIgnore  // TODO: Remove this line.
     private User user;
 
     @Column

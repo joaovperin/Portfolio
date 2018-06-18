@@ -154,3 +154,7 @@ INSERT INTO Experience
 (Cv_Id, Experience_Id, Job_Role, Company, Initial_Date, Final_Date) VALUES
 (1, 1, 'Programmer Intern', 'Rech Informática', '2016-01-18', '2017-08-17'),
 (1, 2, 'Programmer', 'Rech Informática', '2017-08-18', null);
+
+INSERT INTO Experience_Activity
+(Cv_Id, Experience_Id, Sequence, Activity) VALUES
+(1, 1, 1, 'Study Cobol'), (1, 1, 2, 'Study Java'), (1, 2, 1, 'Program Java');

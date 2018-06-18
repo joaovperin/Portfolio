@@ -5,19 +5,54 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
-    
+
     <head th:replace="fragments/template :: headtag">
         <title>Portfy - Curriculum</title>
     </head>
 
     <body>
         <center>
-            
+
             <h2 th:text="'Portfy - ' + ${usr.username} + ' :D'" th:if="${usr}" />
             <h2 th:text="'Portfy - Curriculum :D'" th:unless="${usr}"/>
-            
-            <div th:replace="fragments/template :: dummy-content"/>
-            <footer  th:replace="fragments/template :: footer" />
+
+            <div>
+                <div th:unless="${cv}">Curriculum not found...</div>
+                <div th:if="${cv}">
+                    <div class="cv-container">
+                        <h3>Curriculum info <small style="font-size:16px;">([[${cv.lastUpdate}]])</small> </h3>
+                        <div th:text="${cv.summary}"></div>
+                    </div>
+                    <!-- TODO: Display Objectives, Formations and Courses. -->  
+                    <div class="cv-container">
+                        <h3>Personal Data!</h3>
+                        <div th:text="${cv.personalData.nacionality}"></div>
+                        <div th:text="${cv.personalData.relationship}"></div>
+                        <div th:text="${cv.personalData.address}"></div>
+                        <div th:text="${cv.personalData.email}"></div>
+                        <div th:text="${cv.personalData.phone}"></div>
+                        <div th:text="${cv.personalData.birthDate}"></div>
+                    </div>
+                    <div class="cv-container">
+                        <h3>Languages</h3>
+                        <div th:each="lang : ${cv.languages}">
+                            <div th:text="${lang.language} + ' - ' + ${lang.fmtLevel()}"></div>
+                        </div>
+                    </div>
+                    <div class="cv-container">
+                        <h3>Experience</h3>
+                        <div th:each="exp : ${cv.experiences}">
+                            <h5>[[${exp.jobRole}]] at [[${exp.company}]] ([[${exp.initialDate}]] to [[${exp.finalDate}]])</h5>
+                            <span th:each="act : ${exp.activities}">
+                                [[${act.activity}]]<br/>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top:30px">
+                    <a class="paper-btn" th:href="'/user/' + ${currentUser}">Back</a>
+                </div>
+            </div>
         </center>
     </body>
 </html>
