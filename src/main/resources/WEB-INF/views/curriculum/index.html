@@ -19,12 +19,17 @@ and open the template in the editor.
             <div>
                 <div th:unless="${cv}">Curriculum not found...</div>
                 <div th:if="${cv}">
-                    <div class="cv-container">
+                    <div class="cv-container" id="summary">
                         <h3>Curriculum info <small style="font-size:16px;">([[${cv.lastUpdate}]])</small> </h3>
                         <div th:text="${cv.summary}"></div>
                     </div>
-                    <!-- TODO: Display Objectives, Formations and Courses. -->  
-                    <div class="cv-container">
+                    <div class="cv-container" id="objectives">
+                        <h3>Objectives</h3>
+                        <div th:each="obj : ${cv.objectives}">
+                            <p>[[${obj.objective}]]</p>
+                        </div>
+                    </div>
+                    <div class="cv-container" id="personal-data">
                         <h3>Personal Data!</h3>
                         <div th:text="${cv.personalData.nacionality}"></div>
                         <div th:text="${cv.personalData.relationship}"></div>
@@ -33,13 +38,25 @@ and open the template in the editor.
                         <div th:text="${cv.personalData.phone}"></div>
                         <div th:text="${cv.personalData.birthDate}"></div>
                     </div>
-                    <div class="cv-container">
+                    <div class="cv-container" id="languages">
                         <h3>Languages</h3>
                         <div th:each="lang : ${cv.languages}">
                             <div th:text="${lang.language} + ' - ' + ${lang.fmtLevel()}"></div>
                         </div>
                     </div>
-                    <div class="cv-container">
+                    <div class="cv-container" id="formation">
+                        <h3>Formation</h3>
+                        <div th:each="fmt : ${cv.formations}">
+                            <h5>[[${fmt.name}]] at [[${fmt.school}]] ([[${fmt.initialDate}]] to [[${fmt.finalDate}]])</h5>
+                        </div>
+                    </div>
+                    <div class="cv-container" id="courses">
+                        <h3>Courses</h3>
+                        <div th:each="cr: ${cv.courses}">
+                            <h5>[[${cr.name}]] at [[${cr.school}]] ([[${cr.duration}]]h) <small th:if="${cr.expirationDate}" th:text="${cr.expirationDate}"></small></h5>
+                        </div>
+                    </div>
+                    <div class="cv-container" id="experiences">
                         <h3>Experience</h3>
                         <div th:each="exp : ${cv.experiences}">
                             <h5>[[${exp.jobRole}]] at [[${exp.company}]] ([[${exp.initialDate}]] to [[${exp.finalDate}]])</h5>
