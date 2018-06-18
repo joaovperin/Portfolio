@@ -7,6 +7,7 @@ package br.jpe.portfy.ws.user;
 
 import br.jpe.portfy.ws.contact.Contact;
 import br.jpe.portfy.ws.picture.Picture;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -22,7 +23,7 @@ import org.hibernate.annotations.NaturalId;
  *
  * @author joaovperin
  */
-@Entity
+@Entity(name = "User")
 public class User implements Serializable {
 
     /** Serial version UID */
@@ -60,9 +61,11 @@ public class User implements Serializable {
     private String description;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
+    @JsonIgnore
     private Picture picture;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
+    @JsonIgnore
     private Contact contact;
 
     /**

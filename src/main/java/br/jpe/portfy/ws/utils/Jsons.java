@@ -5,6 +5,9 @@
  */
 package br.jpe.portfy.ws.utils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,7 +71,38 @@ public class Jsons {
          */
         @Bean
         public static Gson gson() {
-            return new GsonBuilder().create();
+            return new GsonBuilder().
+                    setExclusionStrategies(new PortfyGsonExclusionStrategy()).
+                    create();
+        }
+
+    }
+
+    /**
+     * Exclusion strategy
+     */
+    public static final class PortfyGsonExclusionStrategy implements ExclusionStrategy {
+
+        /**
+         * Excludes fields annotated with GsonRepellent annotation
+         *
+         * @param fieldAttributes
+         * @return boolean
+         */
+        @Override
+        public boolean shouldSkipField(FieldAttributes fieldAttributes) {
+            return fieldAttributes.getAnnotation(JsonIgnore.class) != null;
+        }
+
+        /**
+         * Excludes classes annotated with GsonRepellent annotation
+         *
+         * @param type
+         * @return boolean
+         */
+        @Override
+        public boolean shouldSkipClass(Class<?> type) {
+            return type.isAnnotationPresent(JsonIgnore.class);
         }
 
     }

@@ -5,8 +5,12 @@
  */
 package br.jpe.portfy.ws.test;
 
+import br.jpe.portfy.ws.curriculum.Curriculum;
+import br.jpe.portfy.ws.curriculum.CurriculumRepository;
 import br.jpe.portfy.ws.picture.Picture;
 import br.jpe.portfy.ws.picture.PictureService;
+import br.jpe.portfy.ws.user.UserService;
+import br.jpe.portfy.ws.utils.Jsons;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,6 +72,26 @@ public class TestController {
         HttpHeaders headers = new HttpHeaders();
         Resource resource = new ServletContextResource(servletContext, "/WEB-INF/images/image-example.jpg");
         return new ResponseEntity<>(resource, headers, HttpStatus.OK);
+    }
+
+    @Autowired
+    private CurriculumRepository cvDao;
+    @Autowired
+    private UserService users;
+    @Autowired
+    private Jsons jsons;
+
+    @GetMapping("two")
+    public ResponseEntity two() {
+        Long uId = users.get("joaovperin").getId();
+        Curriculum one = cvDao.findByUser(uId);
+        return new ResponseEntity(jsons.toFormattedJson(one), HttpStatus.OK);
+    }
+
+    @GetMapping("three")
+    public ResponseEntity three() {
+        Curriculum one = cvDao.findByUser("joaovperin");
+        return new ResponseEntity(jsons.toFormattedJson(one), HttpStatus.OK);
     }
 
 }

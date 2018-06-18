@@ -7,6 +7,7 @@ package br.jpe.portfy.ws.contact;
 
 import br.jpe.portfy.ws.user.User;
 import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +20,7 @@ import javax.persistence.OneToOne;
  *
  * @author joaovperin
  */
-@Entity
+@Entity(name = "Contact")
 public class Contact implements Serializable {
 
     /** Serial version UID */
@@ -33,6 +34,7 @@ public class Contact implements Serializable {
     /** User associated with the contact data */
     @OneToOne
     @JoinColumn(name = "User_Id", nullable = false)
+    @JsonIgnore
     private User user;
 
     @Column(name = "Cellphone")

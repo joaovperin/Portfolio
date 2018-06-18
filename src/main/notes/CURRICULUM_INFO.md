@@ -21,7 +21,7 @@ Table Structure:
 
 - Course (
    Cv_Id, Sequence, Name, School,
-   Expiration_date, Initial_Date, Final_Date, Duration
+   Expiration_date, Duration
 )
 
 - Languages (

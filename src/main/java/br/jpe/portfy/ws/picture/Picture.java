@@ -6,6 +6,7 @@
 package br.jpe.portfy.ws.picture;
 
 import br.jpe.portfy.ws.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,7 +21,7 @@ import org.hibernate.annotations.NaturalId;
  *
  * @author joaovperin
  */
-@Entity
+@Entity(name = "Picture")
 public class Picture implements Serializable {
 
     /** Serial version UID */
@@ -36,6 +37,7 @@ public class Picture implements Serializable {
     @NotEmpty
     @OneToOne
     @JoinColumn(name = "User_Id", nullable = false)
+    @JsonIgnore
     private User user;
 
     /** Image filename */
