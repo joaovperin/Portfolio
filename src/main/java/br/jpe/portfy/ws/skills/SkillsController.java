@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.jpe.portfy.ws.projects;
+package br.jpe.portfy.ws.skills;
 
 import br.jpe.portfy.ws.utils.ParamsService;
 import java.util.Map;
@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Controller for the projects page
+ * Controller for the skills page
  *
  * @author joaovperin
  */
 @Controller
-@RequestMapping("/user/{user}/projects")
-public class ProjectsController {
+@RequestMapping("/user/{user}/skills")
+public class SkillsController {
 
     @Autowired
     private ParamsService params;
@@ -35,7 +35,7 @@ public class ProjectsController {
     @GetMapping
     public ModelAndView index(@PathVariable String user) {
         Map map = params.map(user);
-        return new ModelAndView("projects/index.html", map);
+        return new ModelAndView("skills/index.html", map);
     }
 
 }
