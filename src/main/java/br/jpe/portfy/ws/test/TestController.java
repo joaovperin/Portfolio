@@ -9,6 +9,8 @@ import br.jpe.portfy.ws.curriculum.Curriculum;
 import br.jpe.portfy.ws.curriculum.CurriculumRepository;
 import br.jpe.portfy.ws.picture.Picture;
 import br.jpe.portfy.ws.picture.PictureService;
+import br.jpe.portfy.ws.skills.Skill;
+import br.jpe.portfy.ws.skills.SkillRepository;
 import br.jpe.portfy.ws.user.UserService;
 import br.jpe.portfy.ws.utils.Jsons;
 import java.util.HashMap;
@@ -94,4 +96,11 @@ public class TestController {
         return new ResponseEntity(jsons.toFormattedJson(one), HttpStatus.OK);
     }
 
+    @Autowired
+    private SkillRepository skills;
+    @GetMapping("skills")
+    public ResponseEntity skills() {
+        List<Skill> list = skills.findAll();
+        return new ResponseEntity(list, HttpStatus.OK);
+    }
 }

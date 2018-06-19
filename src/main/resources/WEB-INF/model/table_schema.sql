@@ -175,3 +175,11 @@ INSERT INTO Experience
 INSERT INTO Experience_Activity
 (Cv_Id, Experience_Id, Sequence, Activity) VALUES
 (1, 1, 1, 'Study Cobol'), (1, 1, 2, 'Study Java'), (1, 2, 1, 'Program Java');
+
+INSERT INTO Skill_Item
+(Skill_Id , Parent_Skill_Id, Name , Description) VALUES
+(1, null, 'First Skill', null), (2, 1, 'Second Skill', '2nd name');
+
+INSERT INTO Skill
+(User_Id , Head_Skill_Id) VALUES
+(1, 1);
