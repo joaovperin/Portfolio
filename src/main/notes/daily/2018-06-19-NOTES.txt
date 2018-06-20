@@ -1,0 +1,29 @@
+Next steps (not necessarily in order):
+
+- Develop the Front end.
+  Maybe react? 
+  Maybe Angular for a SPA ?
+
+- Provide endpoints for a mobile app
+  Just to show the data, not to edit that.
+
+- Develop the login page and the maintenance.
+  It will be a long way... But it's just mandatory for production, not for the 
+  first version which was created to show mine portfy.
+
+- Serve images as static data from a folder
+  Stop storing them on the jar packaging xD
+  We can store URL as path... So when it grows, the images can be stored on S3
+  ...or something like that. 
+
+- Prepare for production use
+  Spring Profiles
+     Create a  Production one.
+  Search for a fast and better database server.
+
+- Populate that with real data
+  My data
+  Math data.
+
+- Prepare for the V1.0 release
+  Show it to everyone :D
