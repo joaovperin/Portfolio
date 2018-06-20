@@ -7,11 +7,14 @@ package br.jpe.portfy.ws.skills;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * Skill Item table model
@@ -24,16 +27,14 @@ public class SkillItem implements Serializable {
     /** Serial version UID */
     private static final long serialVersionUID = 1L;
 
+    @Column(name = "User_Id")
+    private Long userId;
+
     @Id
     @Column(name = "Skill_Id")
-    private int skillId;
+    private Long skillId;
 
-    @Column(name = "Parent_Skill_Id")
-    private int parentSkillId;
-
-    /** User associated with the curriculum */
-    @OneToOne
-    @JoinColumn(name = "Parent_Skill_Id", nullable = false, insertable = false, updatable = false)
+    @ManyToOne
     @JsonIgnore
     private SkillItem parent;
 
@@ -43,24 +44,27 @@ public class SkillItem implements Serializable {
     @Column(name = "Description", nullable = true)
     private String description;
 
-    protected SkillItem() {
+    @OneToMany(mappedBy = "parent")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<SkillItem> children;
 
+    protected SkillItem() {
     }
 
-    public int getSkillId() {
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getSkillId() {
         return skillId;
     }
 
-    public void setSkillId(int skillId) {
+    public void setSkillId(Long skillId) {
         this.skillId = skillId;
-    }
-
-    public int getParentSkillId() {
-        return parentSkillId;
-    }
-
-    public void setParentSkillId(int parentSkillId) {
-        this.parentSkillId = parentSkillId;
     }
 
     public SkillItem getParent() {
@@ -85,6 +89,14 @@ public class SkillItem implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<SkillItem> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<SkillItem> children) {
+        this.children = children;
     }
 
 }

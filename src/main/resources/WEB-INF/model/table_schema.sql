@@ -118,10 +118,11 @@ CREATE TABLE IF NOT EXISTS Experience_Activity (
 CREATE TABLE IF NOT EXISTS Skill (
    User_Id INT NOT NULL COMMENT 'User ID',
    Head_Skill_Id INT NOT NULL COMMENT 'First Skill ID',
-   Primary Key (User_Id)
+   Primary Key (User_Id, Head_Skill_Id)
 );
 
 CREATE TABLE IF NOT EXISTS Skill_Item (
+   User_Id INT NOT NULL COMMENT 'User ID',
    Skill_Id INT NOT NULL AUTO_INCREMENT COMMENT 'Skill ID',
    Parent_Skill_Id INT NULL COMMENT 'Parent Skill ID',
    Name Varchar(32) NOT NULL COMMENT 'Skill Name',
@@ -177,9 +178,29 @@ INSERT INTO Experience_Activity
 (1, 1, 1, 'Study Cobol'), (1, 1, 2, 'Study Java'), (1, 2, 1, 'Program Java');
 
 INSERT INTO Skill_Item
-(Skill_Id , Parent_Skill_Id, Name , Description) VALUES
-(1, null, 'First Skill', null), (2, 1, 'Second Skill', '2nd name');
+(User_Id, Skill_Id , Parent_Skill_Id, Name , Description) VALUES
+(1, 1, null, 'Backend Development', null),
+(1, 2, 1, 'Java', null),
+(1, 3, 2, 'WebServices', null),
+(1, 4, 3, 'VRaptor', null),
+(1, 5, 3, 'Spring Framework', null),
+(1, 6, 5, 'Spring Boot', null),
+(1, 7, 5, 'Spring Web MVC', null),
+(1, 8, 2, 'Graphical Interface', null),
+(1, 9, 8, 'Swing', null),
+(1, 10, 8, 'Java FX', null),
+(1, 11, null, 'Frontend Development', null),
+(1, 12, 11, 'HTML5', null),
+(1, 13, 11, 'CSS', null),
+(1, 14, 13, 'Bootstrap', null),
+(1, 15, 13, 'Ionic Framework', null),
+(1, 16, 11, 'Javascript', null),
+(1, 17, 16, 'jQuery', null),
+(1, 18, 16, 'AngularJS', null),
+(1, 19, null, 'Project Management', null),
+(1, 20, 19, 'Scrum Master', null),
+(1, 21, 19, 'Product Owner', null);
 
 INSERT INTO Skill
 (User_Id , Head_Skill_Id) VALUES
-(1, 1);
+(1, 1), (1, 10), (1, 17);

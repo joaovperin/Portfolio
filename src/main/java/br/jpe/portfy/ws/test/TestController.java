@@ -98,9 +98,11 @@ public class TestController {
 
     @Autowired
     private SkillRepository skills;
+
     @GetMapping("skills")
     public ResponseEntity skills() {
-        List<Skill> list = skills.findAll();
-        return new ResponseEntity(list, HttpStatus.OK);
+        List<Skill> list = skills.findByUser(users.get("joaovperin").getId());
+        return new ResponseEntity(jsons.toFormattedJson(list), HttpStatus.OK);
     }
+
 }

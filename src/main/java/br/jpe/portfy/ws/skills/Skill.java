@@ -6,11 +6,16 @@
 package br.jpe.portfy.ws.skills;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.OneToMany;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * Skill table model
@@ -18,6 +23,7 @@ import javax.persistence.OneToOne;
  * @author joaovperin
  */
 @Entity(name = "Skill")
+@IdClass(SkillPk.class)
 public class Skill implements Serializable {
 
     /** Serial version UID */
@@ -25,40 +31,45 @@ public class Skill implements Serializable {
 
     @Id
     @Column(name = "User_Id")
-    private int userId;
+    private Long userId;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "")
-    private SkillItem head;
-
+    @Id
     @Column(name = "Head_Skill_Id", insertable = false, updatable = false)
-    private int headSkillId;
+    private Long headSkillId;
+
+    @OneToMany
+    @JoinColumns({
+        @JoinColumn(name = "User_Id", referencedColumnName = "User_Id"),
+        @JoinColumn(name = "Skill_Id", referencedColumnName = "Head_Skill_Id")
+    })
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<SkillItem> items;
 
     protected Skill() {
-
     }
 
-    public int getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public SkillItem getHead() {
-        return head;
-    }
-
-    public void setHead(SkillItem head) {
-        this.head = head;
-    }
-
-    public int getHeadSkillId() {
+    public Long getHeadSkillId() {
         return headSkillId;
     }
 
-    public void setHeadSkillId(int headSkillId) {
+    public void setHeadSkillId(Long headSkillId) {
         this.headSkillId = headSkillId;
+    }
+
+    public List<SkillItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<SkillItem> items) {
+        this.items = items;
     }
 
 }
