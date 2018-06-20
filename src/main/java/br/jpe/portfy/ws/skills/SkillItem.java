@@ -28,10 +28,12 @@ public class SkillItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Column(name = "User_Id")
+    @JsonIgnore
     private Long userId;
 
     @Id
     @Column(name = "Skill_Id")
+    @JsonIgnore
     private Long skillId;
 
     @ManyToOne

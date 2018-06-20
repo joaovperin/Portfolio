@@ -12,12 +12,17 @@ and open the template in the editor.
 
     <body>
         <center>
-
             <h2 th:text="'Portfy - ' + ${usr.username} + ' :D'" th:if="${usr}" />
             <h2 th:text="'Portfy - Skills :D'" th:unless="${usr}"/>
-
-            <div th:replace="fragments/template :: dummy-content"/>
-            <footer th:replace="fragments/template :: footer" />
+            <br/>
+            <div style="margin-top:30px" th:fragment="back-user-home">
+                <a class="paper-btn" th:href="'/user/' + ${currentUser}">Back</a>
+            </div>
+            <br/>
+            <h1 style="margin-bottom:-10px">Skills</h1>
         </center>
+        <br/>
+        <br/>
+        <pre><code>// TODO: Display it properly<br/>[[${skills}]]</code></pre>
     </body>
 </html>

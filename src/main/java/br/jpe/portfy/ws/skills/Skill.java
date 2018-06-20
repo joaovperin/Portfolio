@@ -5,6 +5,7 @@
  */
 package br.jpe.portfy.ws.skills;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
@@ -31,10 +32,12 @@ public class Skill implements Serializable {
 
     @Id
     @Column(name = "User_Id")
+    @JsonIgnore
     private Long userId;
 
     @Id
     @Column(name = "Head_Skill_Id", insertable = false, updatable = false)
+    @JsonIgnore
     private Long headSkillId;
 
     @OneToMany

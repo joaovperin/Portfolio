@@ -5,6 +5,7 @@
  */
 package br.jpe.portfy.ws.skills;
 
+import br.jpe.portfy.ws.utils.Jsons;
 import br.jpe.portfy.ws.utils.ParamsService;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,10 @@ public class SkillsController {
 
     @Autowired
     private ParamsService params;
+    @Autowired
+    private SkillRepository skills;
+    @Autowired
+    private Jsons jsons;
 
     /**
      * URL Mapping for the view page
@@ -35,6 +40,7 @@ public class SkillsController {
     @GetMapping
     public ModelAndView index(@PathVariable String user) {
         Map map = params.map(user);
+        map.put("skills", jsons.toFormattedJson(skills.findByUser(user)));
         return new ModelAndView("skills/index.html", map);
     }
 
