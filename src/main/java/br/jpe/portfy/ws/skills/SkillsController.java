@@ -41,6 +41,7 @@ public class SkillsController {
     public ModelAndView index(@PathVariable String user) {
         Map map = params.map(user);
         map.put("skills", jsons.toFormattedJson(skills.findByUser(user)));
+        map.put("skillsObj", skills.findByUser(user));
         return new ModelAndView("skills/index.html", map);
     }
 

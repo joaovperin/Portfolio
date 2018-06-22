@@ -23,6 +23,43 @@ and open the template in the editor.
         </center>
         <br/>
         <br/>
+        <div>
+
+
+            <div th:each="skill : ${skillsObj}">
+                Skill: [[${skill}]] <br/>
+                <div th:each="skillItem : ${skill.items}">
+                    <div th:replace="fragments/template.html :: skillItem(item=${skillItem})">
+                        SkillItem: "name" <br/>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <ul>
+                <li>Let's try this</li>
+                <li>Let's try this again</li>
+                <ul>
+                    <li>And now we are nested</li>
+                    <li>Pretty cool?</li>
+                    <ul>
+                        <li>The list items are just text</li>
+                        <li>From this font</li>
+                        <ul>
+                            <li>We'll keep going</li>
+                            <li>Until we hit</li>
+                            <ul>
+                                <li>LEVEL 5</li>
+                            </ul>
+                        </ul>
+                    </ul>
+                </ul>
+                <li>And now we're are the top!</li>
+            </ul>
+        </div>
+        <br/>
+        <br/>
         <pre><code>// TODO: Display it properly<br/>[[${skills}]]</code></pre>
     </body>
 </html>

@@ -96,6 +96,15 @@ and open the template in the editor.
         </div>
         <!--/Card Component Fragment -->
 
+        <!--SkillItem Component Fragment -->
+        <ul th:fragment="skillItem(item)">
+            <li th:attr="title=${item.description}">[[${item.name}]]</li>
+            <div th:each="child: ${item.children}">
+                <div th:replace="fragments/template.html :: skillItem(item=${child})" />
+            </div>
+        </ul>
+        <!--./SkillItem Component Fragment -->
+
         <!--Footer Fragment -->
         <footer style="position: absolute; bottom: 0; width: 100%; background-color: #33ccff; color: white" th:fragment="footer">
             Copyright xD
