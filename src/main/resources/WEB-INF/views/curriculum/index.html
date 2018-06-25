@@ -11,65 +11,62 @@ and open the template in the editor.
     </head>
 
     <body>
-        <center>
 
-            <h2 th:text="'Portfy - ' + ${usr.username} + ' :D'" th:if="${usr}" />
-            <h2 th:text="'Portfy - Curriculum :D'" th:unless="${usr}"/>
+        <h2 class="center">Portfy</h2>
 
-            <div>
-                <div th:unless="${cv}">Curriculum not found...</div>
-                <div th:if="${cv}">
-                    <div class="cv-container" id="summary">
-                        <h3>Curriculum info <small style="font-size:16px;">([[${cv.lastUpdate}]])</small> </h3>
-                        <div th:text="${cv.summary}"></div>
-                    </div>
-                    <div class="cv-container" id="objectives">
-                        <h3>Objectives</h3>
-                        <div th:each="obj : ${cv.objectives}">
-                            <p>[[${obj.objective}]]</p>
-                        </div>
-                    </div>
-                    <div class="cv-container" id="personal-data">
-                        <h3>Personal Data!</h3>
-                        <div th:text="${cv.personalData.nacionality}"></div>
-                        <div th:text="${cv.personalData.relationship}"></div>
-                        <div th:text="${cv.personalData.address}"></div>
-                        <div th:text="${cv.personalData.email}"></div>
-                        <div th:text="${cv.personalData.phone}"></div>
-                        <div th:text="${cv.personalData.birthDate}"></div>
-                    </div>
-                    <div class="cv-container" id="languages">
-                        <h3>Languages</h3>
-                        <div th:each="lang : ${cv.languages}">
-                            <div th:text="${lang.language} + ' - ' + ${lang.fmtLevel()}"></div>
-                        </div>
-                    </div>
-                    <div class="cv-container" id="formation">
-                        <h3>Formation</h3>
-                        <div th:each="fmt : ${cv.formations}">
-                            <h5>[[${fmt.name}]] at [[${fmt.school}]] ([[${fmt.initialDate}]] to [[${fmt.finalDate}]])</h5>
-                        </div>
-                    </div>
-                    <div class="cv-container" id="courses">
-                        <h3>Courses</h3>
-                        <div th:each="cr: ${cv.courses}">
-                            <h5>[[${cr.name}]] at [[${cr.school}]] ([[${cr.duration}]]h) <small th:if="${cr.expirationDate}" th:text="${cr.expirationDate}"></small></h5>
-                        </div>
-                    </div>
-                    <div class="cv-container" id="experiences">
-                        <h3>Experience</h3>
-                        <div th:each="exp : ${cv.experiences}">
-                            <h5>[[${exp.jobRole}]] at [[${exp.company}]] ([[${exp.initialDate}]] to [[${exp.finalDate}]])</h5>
-                            <span th:each="act : ${exp.activities}">
-                                [[${act.activity}]]<br/>
-                            </span>
-                        </div>
+        <div class="center">
+            <div th:unless="${cv}">Curriculum not found...</div>
+            <div th:if="${cv}">
+                <div class="cv-container" id="summary">
+                    <h3>Curriculum info <small style="font-size:16px;">([[${#dates.format(cv.lastUpdate, 'dd/MM/yyyy')}]])</small> </h3>
+                    <p th:text="${cv.summary}"></p>
+                </div>
+                <div class="cv-container" id="objectives">
+                    <h3>Objectives</h3>
+                    <div th:each="obj : ${cv.objectives}">
+                        <p>[[${obj.objective}]]</p>
                     </div>
                 </div>
-                <div style="margin-top:30px">
-                    <a class="paper-btn" th:href="'/user/' + ${currentUser}">Back</a>
+                <div class="cv-container" id="personal-data">
+                    <h3>Personal Data!</h3>
+                    <p th:text="${cv.personalData.nacionality}"></p>
+                    <p th:text="${cv.personalData.relationship}"></p>
+                    <p th:text="${cv.personalData.address}"></p>
+                    <p th:text="${cv.personalData.email}"></p>
+                    <p th:text="${cv.personalData.phone}"></p>
+                    <p th:text="${#dates.format(cv.personalData.birthDate, 'dd/MM/yyyy')}"></p>
+                </div>
+                <div class="cv-container" id="languages">
+                    <h3>Languages</h3>
+                    <div th:each="lang : ${cv.languages}">
+                        <p th:text="${lang.language} + ' - ' + ${lang.fmtLevel()}"></p>
+                    </div>
+                </div>
+                <div class="cv-container" id="formation">
+                    <h3>Formation</h3>
+                    <div th:each="fmt : ${cv.formations}">
+                        <h5>[[${fmt.name}]] at [[${fmt.school}]] ([[${#dates.format(fmt.initialDate, 'dd/MM/yyyy')}]] <span th:if="${fmt.finalDate}" th:remove="tag">to [[${#dates.format(fmt.finalDate, 'dd/MM/yyyy')}]]</span>)</h5>
+                    </div>
+                </div>
+                <div class="cv-container" id="courses">
+                    <h3>Courses</h3>
+                    <div th:each="cr: ${cv.courses}">
+                        <h5>[[${cr.name}]] at [[${cr.school}]] ([[${cr.duration}]]h) <small th:if="${cr.expirationDate}" th:text="${cr.expirationDate}"></small></h5>
+                    </div>
+                </div>
+                <div class="cv-container no-padding-left" id="experiences">
+                    <h3>Experience</h3>
+                    <ul>
+                        <div th:each="exp : ${cv.experiences}" style="margin-top:14px">
+                            <li>[[${exp.jobRole}]] at [[${exp.company}]] ([[${#dates.format(exp.initialDate, 'dd/MM/yyyy')}]] to <span th:unless="${exp.finalDate}" th:remove="tag">now</span><span th:if="${exp.finalDate}" th:remove="tag">[[${#dates.format(exp.finalDate, 'dd/MM/yyyy')}]]</span>)</li>
+                            <ul><li th:each="act : ${exp.activities}" style="padding: 3px 0" >[[${act.activity}]]</li></ul>
+                        </div>
+                    </ul>
                 </div>
             </div>
-        </center>
+            <div style="margin-top:30px" class="center">
+                <a class="paper-btn" th:href="'/user/' + ${currentUser}">Back</a>
+            </div>
+        </div>
     </body>
 </html>

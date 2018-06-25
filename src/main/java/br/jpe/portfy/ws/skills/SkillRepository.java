@@ -24,7 +24,7 @@ public interface SkillRepository extends JpaRepository<Skill, SkillPk>, JpaSpeci
      * @param userId
      * @return List
      */
-    @Query(nativeQuery = true, value = "SELECT * FROM Skill WHERE User_Id = :userid LIMIT 1")
+    @Query(nativeQuery = true, value = "SELECT * FROM Skill WHERE User_Id = :userid")
     public List<Skill> findByUser(@Param("userid") Long userId);
 
     /**
@@ -33,7 +33,7 @@ public interface SkillRepository extends JpaRepository<Skill, SkillPk>, JpaSpeci
      * @param userName
      * @return List
      */
-    @Query(nativeQuery = true, value = "SELECT S.* FROM Skill S INNER JOIN User U ON U.Id = S.User_Id WHERE U.Username = :userName LIMIT 1")
+    @Query(nativeQuery = true, value = "SELECT S.* FROM Skill S INNER JOIN User U ON U.Id = S.User_Id WHERE U.Username = :userName")
     public List<Skill> findByUser(@Param("userName") String userName);
 
 }

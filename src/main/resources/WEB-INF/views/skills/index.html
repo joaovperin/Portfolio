@@ -11,55 +11,34 @@ and open the template in the editor.
     </head>
 
     <body>
-        <center>
-            <h2 th:text="'Portfy - ' + ${usr.username} + ' :D'" th:if="${usr}" />
-            <h2 th:text="'Portfy - Skills :D'" th:unless="${usr}"/>
-            <br/>
-            <div style="margin-top:30px" th:fragment="back-user-home">
-                <a class="paper-btn" th:href="'/user/' + ${currentUser}">Back</a>
+        <h2 class="center">Portfy</h2>
+        <div class="card" style="margin: auto 12px;">
+            <!-- Card Title -->  
+            <div class="card-title center">
+                <h3>[[${usr.firstname + " " + usr.lastname}]] Skills</h3>
             </div>
-            <br/>
-            <h1 style="margin-bottom:-10px">Skills</h1>
-        </center>
-        <br/>
-        <br/>
-        <div>
-
-
-            <div th:each="skill : ${skillsObj}">
-                Skill: [[${skill}]] <br/>
-                <div th:each="skillItem : ${skill.items}">
-                    <div th:replace="fragments/template.html :: skillItem(item=${skillItem})">
-                        SkillItem: "name" <br/>
+            <!-- Card Body -->  
+            <div class="card-body">
+                <div class="card-content portfy-skill-container">
+                    <div th:each="skill : ${skills}" class="portfy-skill">
+                        <div class="portfy-skill-title">Skill: [[${skill.name}]]</div>
+                        <div th:each="skillItem : ${skill.items}" class="portfy-skill-item-container">
+                            <div th:replace="fragments/template.html :: skillItem(item=${skillItem})" th:remove="tag">
+                                SkillItem: "name" <br/>
+                            </div>
+                        </div>
+                        <br/>
                     </div>
                 </div>
             </div>
-
-
-
-            <ul>
-                <li>Let's try this</li>
-                <li>Let's try this again</li>
-                <ul>
-                    <li>And now we are nested</li>
-                    <li>Pretty cool?</li>
-                    <ul>
-                        <li>The list items are just text</li>
-                        <li>From this font</li>
-                        <ul>
-                            <li>We'll keep going</li>
-                            <li>Until we hit</li>
-                            <ul>
-                                <li>LEVEL 5</li>
-                            </ul>
-                        </ul>
-                    </ul>
-                </ul>
-                <li>And now we're are the top!</li>
-            </ul>
         </div>
-        <br/>
-        <br/>
-        <pre><code>// TODO: Display it properly<br/>[[${skills}]]</code></pre>
+        <div style="margin-top: 35px; margin-bottom: 55px" class="center" th:fragment="back-user-home">
+            <a class="paper-btn" th:href="'/user/' + ${currentUser}">Back</a>
+        </div>
+        <!-- Footer and scripts -->  
+        <footer th:replace="fragments/template :: footer" />
+        <script th:inline="javascript" th:if="${skills}">
+            console.log([[${skills}]]);
+        </script> 
     </body>
 </html>

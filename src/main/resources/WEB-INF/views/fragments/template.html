@@ -18,8 +18,10 @@ and open the template in the editor.
 
         <link rel="stylesheet" type="text/css" href="/third-party/paper.min.css"/>
         <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
-        <script type="text/javascript" src="/third-party/jquery.min.js"></script>
-        <script type="text/javascript" src="/js/common.js"></script>
+        <link rel="stylesheet" href="../../../resources/css/layout.css" type="text/css">
+
+            <script type="text/javascript" src="/third-party/jquery.min.js"></script>
+            <script type="text/javascript" src="/js/common.js"></script>
     </head> <!--/.Head Tag Fragment -->
 
     <body>
@@ -71,7 +73,7 @@ and open the template in the editor.
             <h2 th:text="'Portfy - ' + ${title} + ' :D'" />
             <div th:fragment="dummy-content">
                 <div>TODO: Add some content here...</div>
-                <div style="margin-top:30px" th:fragment="back-user-home">
+                <div style="margin-top:60px" th:fragment="back-user-home">
                     <a class="paper-btn" th:href="'/user/' + ${currentUser}">Back</a>
                 </div>
             </div>
@@ -98,7 +100,7 @@ and open the template in the editor.
 
         <!--SkillItem Component Fragment -->
         <ul th:fragment="skillItem(item)">
-            <li th:attr="title=${item.description}">[[${item.name}]]</li>
+            <li th:attr="title=${item.description}" class="portfy-skill-item">[[${item.name}]]</li>
             <div th:each="child: ${item.children}">
                 <div th:replace="fragments/template.html :: skillItem(item=${child})" />
             </div>
@@ -106,7 +108,7 @@ and open the template in the editor.
         <!--./SkillItem Component Fragment -->
 
         <!--Footer Fragment -->
-        <footer style="position: absolute; bottom: 0; width: 100%; background-color: #33ccff; color: white" th:fragment="footer">
+        <footer class="footer" th:fragment="footer">
             Copyright xD
         </footer>
         <!--/Footer Fragment -->

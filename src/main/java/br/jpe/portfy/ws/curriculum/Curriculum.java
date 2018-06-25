@@ -21,6 +21,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * Curriculum table model
@@ -71,7 +72,8 @@ public class Curriculum implements Serializable {
 
     @Column(name = "Last_Update")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private java.util.Date lastUpdate;
 
     /**
      * Default constructor

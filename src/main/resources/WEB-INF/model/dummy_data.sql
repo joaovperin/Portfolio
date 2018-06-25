@@ -118,7 +118,6 @@ CREATE TABLE IF NOT EXISTS Experience_Activity (
 CREATE TABLE IF NOT EXISTS Skill (
    User_Id INT NOT NULL COMMENT 'User ID',
    Head_Skill_Id INT NOT NULL COMMENT 'First Skill ID',
-   Name Varchar(50) NOT NULL COMMENT 'Skill name',
    Primary Key (User_Id, Head_Skill_Id)
 );
 
@@ -130,3 +129,83 @@ CREATE TABLE IF NOT EXISTS Skill_Item (
    Description Varchar(60) NULL COMMENT 'Skill Description',
    Primary Key (Skill_Id)
 );
+
+INSERT INTO User (User, Pass, Email, First_Name, Last_Name, Description)
+VALUES
+('joaovperin', 'joaovperin', 'joao@email.com', 'João', 'Perin', 'Lorem ipsum per diam accumsan risus torquent pretium ullamcorper accumsan, lorem nibh feugiat per ut nisi vulputate luctus pulvinar, primis feugiat aliquam faucibus lacus curae eros nibh. praesent morbi mollis nam, sociosqu.'),
+('mathpmelo', 'mathpmelo', 'math@email.com', 'Matheus', 'Melo', 'Nam quis nulla. Integer malesuada. In in enim a arcu imperdiet malesuada. Sed vel lectus. Donec odio urna, tempus molestie, porttitor ut, iaculis quis, sem. Phasellus rhoncus. Aenean id metus id velit ullamcorper pulvinar. Vestibulum fermentum tortor id mi. Pellentesque ipsum');
+
+INSERT INTO Picture (User_Id, Filename, Title, Alt)
+VALUES
+('1', 'cat.jpeg', 'Cat Image', '--cat--img-xD-'), ('2', 'dog.jpg', null, null);
+
+INSERT INTO Contact (User_Id, State, City)
+VALUES
+('1', 'RS', 'Novo Hamburgo'), ('2', 'RS', 'Estância Velha');
+
+INSERT INTO Curriculum (Id, User_ID, Summary, Last_Update)
+VALUES
+(1, 1, 'hehe', '2018-06-17 15:30:20');
+
+INSERT INTO Personal_Data (Cv_Id, Nacionality, Relationship, Address, Email, Phone, Birth_Date)
+VALUES
+(1, 'Brazilian', 'Single', 'Rua tal e blablabla - canudos', 'joao@email.com', '+55 (51) 99554422', '1996-12-10');
+
+INSERT INTO Objective (Cv_Id, Sequence, Objective)
+VALUES
+(1, 1, 'Be rich'),  (1, 2, 'Become a God');
+
+INSERT INTO Formation
+(Cv_Id, Sequence, Name, School, Initial_Date, Final_Date) VALUES
+(1, 1, 'Electronics technician', 'Fundação Escola Técnica Liberato Salzano Vieira da Cunha', '2011-02-21', '2016-12-21'),
+(1, 2, 'Computer Science', 'Universidade Feevale', '2016-06-18', null);
+
+INSERT INTO Course
+(Cv_Id, Sequence, Name, School, Expiration_Date, Duration) VALUES
+(1, 1, 'Web Designer', 'Scheffer Informática NH', null, 60);
+
+INSERT INTO Language
+(Cv_Id, Language, Level) VALUES
+(1, 'Portuguese', 1), (1, 'English', 3);
+
+INSERT INTO Experience
+(Cv_Id, Experience_Id, Job_Role, Company, Initial_Date, Final_Date) VALUES
+(1, 1, 'Programmer Intern', 'Rech Informática', '2016-01-18', '2017-08-17'),
+(1, 2, 'Programmer', 'Rech Informática', '2017-08-17', '2018-06-18'),
+(1, 3, 'Scrum Master', 'Rech Informática', '2018-06-18', null);
+
+INSERT INTO Experience_Activity
+(Cv_Id, Experience_Id, Sequence, Activity) VALUES
+(1, 1, 1, 'Study Cobol'), (1, 1, 2, 'Study Java'), 
+(1, 2, 1, 'Program Java'),
+(1, 3, 1, 'Do Scrum Master Stuff');
+
+INSERT INTO Skill_Item
+(User_Id, Skill_Id , Parent_Skill_Id, Name , Description) VALUES
+(1, 1, null, 'Backend Development', null),
+(1, 2, 1, 'Java', null),
+(1, 3, 2, 'WebServices', null),
+(1, 4, 3, 'VRaptor', null),
+(1, 5, 3, 'Spring Framework', null),
+(1, 6, 5, 'Spring Boot', null),
+(1, 7, 5, 'Spring Web MVC', null),
+(1, 8, 2, 'Graphical Interface', null),
+(1, 9, 8, 'Swing', null),
+(1, 10, 8, 'Java FX', null),
+(1, 11, null, 'Frontend Development', null),
+(1, 12, 11, 'HTML5', null),
+(1, 13, 11, 'CSS', null),
+(1, 14, 13, 'Bootstrap', null),
+(1, 15, 13, 'Ionic Framework', null),
+(1, 16, 11, 'Javascript', null),
+(1, 17, 16, 'jQuery', null),
+(1, 18, 16, 'AngularJS', null),
+(1, 19, null, 'Project Management', null),
+(1, 20, 19, 'Scrum Master', null),
+(1, 21, 19, 'Product Owner', null);
+
+INSERT INTO Skill
+(User_Id , Name, Head_Skill_Id) VALUES
+(1, 'Backend', 1),
+(1, 'Frontend', 11),
+(1, 'Management', 19);

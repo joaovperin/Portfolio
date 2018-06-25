@@ -40,9 +40,13 @@ public class Skill implements Serializable {
     @JsonIgnore
     private Long headSkillId;
 
+    @Column(name = "Name")
+    private String name;
+
     @OneToMany
     @JoinColumns({
-        @JoinColumn(name = "User_Id", referencedColumnName = "User_Id"),
+        @JoinColumn(name = "User_Id", referencedColumnName = "User_Id")
+        ,
         @JoinColumn(name = "Skill_Id", referencedColumnName = "Head_Skill_Id")
     })
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -65,6 +69,14 @@ public class Skill implements Serializable {
 
     public void setHeadSkillId(Long headSkillId) {
         this.headSkillId = headSkillId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<SkillItem> getItems() {

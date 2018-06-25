@@ -6,6 +6,15 @@
 }
 /** Adds a default size-10 padding */
 .pd-10 {padding-top: 10px; padding-bottom: 20px;}
+/** footer */
+.footer {
+    bottom: 0;
+    position: fixed; 
+    width: 100%;
+    background-color: #33ccff;
+    color: white;
+    text-align: center;
+}
 /** Card Component */
 div.card-container {
     width: 430px;
@@ -30,6 +39,49 @@ div.card-text p {
 
 /** Curriculum page */
 .cv-container {
-    
+    border: solid 3px red;
+    border-bottom: 0;
+    border-radius: 120px;
+    margin: 0 50px;
+}
+.cv-container p,
+.cv-container h5 {
+    margin:0; padding-bottom: 8px;
+}
+.cv-container h3 {
+    margin: 20px 0;
 }
 /**./Curriculum page */
+
+/** Skills page */
+.portfy-skill-container {
+    font-size: 35px;
+    border: solid 2px mediumvioletred;
+    border-radius: 12px;
+}
+.portfy-skill {
+    margin: 12px 15px;
+    border: dashed 2px rgba(190,57,168, 1);
+    border-radius: 25px;
+    padding: 10px;
+    padding-bottom:0;
+}
+.portfy-skill-title {
+    padding-left: 12px;
+}
+.portfy-skill-item-container {
+    margin: 6px 12px;
+    border: solid 2px rgba(255,0,0,0.48);
+}
+.portfy-skill-item {
+    border: solid 1px blueviolet;
+    width: fit-content;
+    padding: 0 15px 0 25px;
+    margin-top: 4px;
+    border-radius: 14px;
+}
+/**./Skills page */
+.no-padding-left * {
+    margin-left: 0;
+    padding-left: 0;
+}

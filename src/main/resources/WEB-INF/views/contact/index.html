@@ -12,24 +12,32 @@ and open the template in the editor.
 
     <body>
         <center>
-
-            <h2 th:text="'Portfy - ' + ${usr.username} + ' :D'" th:if="${usr}" />
-            <h2 th:text="'Portfy - Contact :D'" th:unless="${usr}"/>
-
-            <p th:text="'Email: ' +  ${usr.email}">
-                Email: user@email.com
-            </p>
-            <p th:text="'Phone: +' +  ${usr.contact.countryCode} + ' (' + ${usr.contact.stateCode} + ') ' + ${usr.contact.cellphone}">
-                Phone: +55 (51) 993388532
-            </p>
-            <p th:text="'Address: ' + ${usr.contact.address}">
-                Address: Rua tal, número 26
-            </p>
-            <p th:text="${usr.contact.city} + ' - ' + ${usr.contact.state}">
-                Novo Hamburgo - RS
-            </p>
-            <div th:replace="fragments/template :: back-user-home">
-                <a class="paper-btn" th:href="'/user/' + ${currentUser}">Back</a>
+            <h2>Portfy</h2>
+            <div class="card">
+                <!-- Card Title -->  
+                <div class="card-title">
+                    <h3>[[${usr.firstname + " " + usr.lastname}]]</h3>
+                </div>
+                <!-- Card Body -->  
+                <div class="card-body">
+                    <div class="card-content">
+                        <p th:text="'Email: ' +  ${usr.email}" th:if="${usr.email}">
+                            Email: user@email.com
+                        </p>
+                        <p th:text="'Phone: +' +  ${usr.contact.countryCode} + ' (' + ${usr.contact.stateCode} + ') ' + ${usr.contact.cellphone}"  th:if="${usr.contact.cellphone}">
+                            Phone: +55 (51) 993388532
+                        </p>
+                        <p th:text="'Address: ' + ${usr.contact.address}" th:if="${usr.contact.address}">
+                            Address: Rua tal, número 26
+                        </p>
+                        <p th:text="${usr.contact.city} + ' - ' + ${usr.contact.state}" th:if="${usr.contact.city}">
+                            Novo Hamburgo - RS
+                        </p>
+                        <div th:replace="fragments/template :: back-user-home">
+                            <a class="paper-btn" th:href="'/user/' + ${currentUser}">Back</a>
+                        </div>
+                    </div>
+                </div>
             </div>
             <footer  th:replace="fragments/template :: footer" />
         </center>
